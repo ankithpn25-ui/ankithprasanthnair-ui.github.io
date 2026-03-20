@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankith Prasanth Nair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080c10;--surface:#0d1117;--text:#c8cdd4;--text-dim:#5a6270;--accent:#8ab4c8;--rule:#1a1f26;--max-width:660px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;font-weight:300;line-height:1.8;min-height:100vh;overflow-x:hidden}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.container{position:relative;z-index:1;max-width:var(--max-width);margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;background:linear-gradient(to bottom,var(--bg) 60%,transparent)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+nav .name{font-family:'EB Garamond',serif;font-size:15px;letter-spacing:.02em;color:var(--text);text-decoration:none;opacity:.7}
+nav .links{display:flex;gap:28px}
+nav a{color:var(--text-dim);text-decoration:none;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+nav a:hover{color:var(--text)}
+#hero{padding:160px 0 100px;min-height:100vh;display:flex;align-items:center}
+#hero .container{animation:fadeUp 1s ease both}
+.hero-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;opacity:.7}
+h1{font-family:'EB Garamond',serif;font-size:clamp(38px,7vw,56px);font-weight:400;line-height:1.1;letter-spacing:-.01em;color:#dde2e8;margin-bottom:28px}
+.hero-identity{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:24px}
+.hero-identity span{margin:0 12px;opacity:.4}
+.hero-tagline{font-family:'EB Garamond',serif;font-size:19px;font-style:italic;color:var(--text-dim);max-width:480px;line-height:1.6;margin-bottom:48px}
+.hero-scroll{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);opacity:.4}
+hr{border:none;border-top:1px solid var(--rule);margin:64px 0}
+section{padding:80px 0;animation:fadeUp .8s ease both;animation-play-state:paused}
+section.visible{animation-play-state:running}
+.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:40px;opacity:.5}
+p{color:var(--text);margin-bottom:20px;max-width:580px}
+p:last-child{margin-bottom:0}
+.featured{margin-top:40px;border:1px solid var(--rule);border-left:2px solid var(--accent);padding:28px 32px;background:var(--surface);transition:border-color .2s,background .2s;text-decoration:none;display:block}
+.featured:hover{background:#0f151b;border-color:var(--accent)}
+.featured-flag{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);opacity:.7;margin-bottom:12px}
+.featured-title{font-family:'EB Garamond',serif;font-size:24px;font-weight:500;color:#dde2e8;margin-bottom:10px;line-height:1.2}
+.featured-desc{font-size:13px;color:var(--text-dim);line-height:1.7;margin-bottom:20px}
+.featured-read{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);opacity:.6;transition:opacity .2s}
+.featured:hover .featured-read{opacity:1}
+.articles{margin-top:32px;list-style:none}
+.articles li{padding:20px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.articles li:first-child{border-top:1px solid var(--rule)}
+.article-title{font-family:'EB Garamond',serif;font-size:17px;color:#c8cdd4;text-decoration:none;transition:color .2s;display:block;margin-bottom:4px}
+.article-title:hover{color:var(--accent)}
+.article-desc{font-size:12px;color:var(--text-dim)}
+.article-meta{font-size:11px;color:var(--text-dim);opacity:.4;white-space:nowrap;margin-top:2px}
+.philosophy-quote{font-family:'EB Garamond',serif;font-size:21px;font-style:italic;color:#8a9aaa;line-height:1.6;padding-left:20px;border-left:1px solid var(--accent);margin:32px 0;max-width:500px}
+.contact-links{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.contact-link{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text-dim);font-size:13px;transition:color .2s;width:fit-content}
+.contact-link:hover{color:var(--text)}
+.contact-link .label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);opacity:.4;width:64px;flex-shrink:0}
+footer{padding:48px 0 64px;border-top:1px solid var(--rule)}
+footer .container{display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:11px;color:var(--text-dim);opacity:.3;margin:0;max-width:unset}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){nav .links{display:none}#hero{padding:120px 0 80px}.articles li{flex-direction:column;gap:4px}footer .container{flex-direction:column;gap:8px;align-items:flex-start}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<nav>
+  <div class="container">
+    <a href="#" class="name">Ankith Prasanth Nair</a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+<main>
+<section id="hero">
+  <div class="container">
+    <div class="hero-label">IIT Kharagpur</div>
+    <h1>Ankith<br>Prasanth Nair</h1>
+    <div class="hero-identity">Engineering <span>·</span> Astrophysics <span>·</span> Large-Scale Energy Systems</div>
+    <p class="hero-tagline">Some problems are worth the size of their consequences.</p>
+    <div class="hero-scroll">↓ &nbsp; Scroll</div>
+  </div>
+</section>
+<div class="container"><hr></div>
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <p>I study engineering at IIT Kharagpur. The discipline is electrical, but the orientation is broader — toward systems that operate at scales where individual components become statistical, and where the interesting questions are about structure, not components.</p>
+    <p>Astrophysics is where I keep returning. Not as escape from engineering, but as the place where thermodynamics, field theory, and computation converge around objects that are unforgiving about approximation. Stars do not tolerate bad models. That discipline carries over.</p>
+    <p>My current interests sit at the intersection of large-scale energy systems and the physical principles that constrain them — thermodynamic limits, entropy, dissipation at scale. The same mathematics that governs stellar interiors governs power grids. I find that correspondence useful to think about.</p>
+    <p>I write to clarify, not to publish. When an idea survives being written down, it was probably real.</p>
+  </div>
+</section>
+<div class="container"><hr></div>
+<section id="work">
+  <div class="container">
+    <div class="section-label">Work &amp; Articles</div>
+    <a href="https://medium.com/@ankithprasanth/the-reservoir-rings-engineering-the-omnipotence-of-a-type-ii-civilization-cd290ca2421b" target="_blank" class="featured">
+      <div class="featured-flag">Featured</div>
+      <div class="featured-title">The Reservoir Rings</div>
+      <div class="featured-desc">An investigation into orbital energy storage — the idea that ring structures at planetary scale could function as mechanical capacitors for civilizational power. Starts from thermodynamic first principles and asks where the hard limits actually are.</div>
+      <div class="featured-read">Read on Medium →</div>
+    </a>
+    <ul class="articles">
+      <li>
+        <div>
+          <span class="article-title" style="cursor:default">More articles forthcoming</span>
+          <div class="article-desc">—</div>
+        </div>
+        <div class="article-meta">—</div>
+      </li>
+    </ul>
+  </div>
+</section>
+<div class="container"><hr></div>
+<section id="writing">
+  <div class="container">
+    <div class="section-label">On Writing</div>
+    <blockquote class="philosophy-quote">Precision is the only courtesy you can offer a complex idea.</blockquote>
+    <p>I write to force commitment. Vague thinking survives conversation but collapses under a sentence. The goal is not elegance — it is a structure that holds under pressure.</p>
+    <p>The pieces I publish are the ones where I have failed enough times to believe the argument. Everything else stays in the notebook.</p>
+  </div>
+</section>
+<div class="container"><hr></div>
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <p>Available for conversation on astrophysics, energy systems, and ideas worth taking seriously.</p>
+    <div class="contact-links">
+      <a href="mailto:ankithprasanth@gmail.com" class="contact-link">
+        <span class="label">Email</span>ankithprasanth@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/ankith-prasanth-nair-68598a374" target="_blank" class="contact-link">
+        <span class="label">LinkedIn</span>linkedin.com/in/ankith-prasanth-nair-68598a374
+      </a>
+      <a href="https://github.com/ankithpn25-ui" target="_blank" class="contact-link">
+        <span class="label">GitHub</span>github.com/ankithpn25-ui
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="container">
+    <p>Ankith Prasanth Nair — IIT Kharagpur</p>
+    <p>Built without ceremony.</p>
+  </div>
+</footer>
+<script>
+var canvas=document.getElementById('stars'),ctx=canvas.getContext('2d'),stars=[];
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+function initStars(){stars=[];var c=Math.floor(canvas.width*canvas.height/8000);for(var i=0;i<c;i++)stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*.8+.1,alpha:Math.random()*.5+.1,drift:(Math.random()-.5)*.003})}
+function drawStars(){ctx.clearRect(0,0,canvas.width,canvas.height);for(var i=0;i<stars.length;i++){var s=stars[i];ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(180,200,220,'+s.alpha+')';ctx.fill();s.alpha+=s.drift;if(s.alpha>.6||s.alpha<.05)s.drift*=-1}requestAnimationFrame(drawStars)}
+resize();initStars();drawStars();
+window.addEventListener('resize',function(){resize();initStars()});
+var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:.1});
+document.querySelectorAll('section').forEach(function(s){obs.observe(s)});
+</script>
+</body>
+</html>
