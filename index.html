@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ankith Prasanth Nair — Astrophysics & Energy Systems</title>
+  <title>Ankith Prasanth Nair — Student at IIT Kharagpur. IIT KGP'29</title>
   <style>
     :root {
-      --bg: #090a0f;
-      --card-bg: #12151e;
-      --border: #232838;
-      --border-hover: #38bdf8;
-      --text: #e2e8f0;
+      --bg: #030712;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(56, 189, 248, 0.15);
+      --card-hover-border: rgba(56, 189, 248, 0.6);
+      --text: #f8fafc;
       --text-muted: #94a3b8;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.15);
+      --cyan: #38bdf8;
+      --violet: #818cf8;
+      --gold: #fbbf24;
+      --glow-cyan: rgba(56, 189, 248, 0.25);
     }
 
     * {
@@ -27,166 +29,401 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
-    }
-
-    /* Ambient background grid */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.05), transparent 70%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    header {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2.5rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .badge {
-      display: inline-block;
-      font-family: monospace;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      background: var(--accent-glow);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.25rem 0.75rem;
-      border-radius: 99px;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-links {
+      min-height: 100vh;
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-    }
-
-    .contact-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.9rem;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .contact-links a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: var(--accent-glow);
-    }
-
-    section h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .article-card {
-      display: block;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      margin-bottom: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 1.5rem;
+      overflow-x: hidden;
       position: relative;
     }
 
-    .article-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px -10px var(--accent-glow);
+    /* Live Interactive Starfield Background Canvas */
+    #starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    .article-meta {
+    .container {
+      width: 100%;
+      max-width: 850px;
+      z-index: 1;
+    }
+
+    /* Hero Section Header */
+    header {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 50%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-family: monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cyan);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.35rem 0.85rem;
+      border-radius: 99px;
+      margin-bottom: 1.5rem;
     }
 
-    .article-title {
-      font-size: 1.35rem;
-      font-weight: 600;
+    .badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--cyan);
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .institution {
       color: #fff;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
+      font-weight: 600;
     }
 
-    .article-desc {
+    /* Contact Links & Click-to-Copy Email Badges */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact-btn, .email-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-family: monospace;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .contact-btn:hover, .email-chip:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--cyan);
+      color: #fff;
+      box-shadow: 0 0 15px var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+
+    .email-label {
+      font-size: 0.7rem;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(56, 189, 248, 0.15);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    /* Featured Content Cards */
+    .section-title {
+      font-size: 0.85rem;
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      padding-left: 0.5rem;
+    }
+
+    .featured-card {
+      display: block;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2.25rem;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .featured-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent);
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    .featured-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 25px 50px -12px rgba(56, 189, 248, 0.25);
+    }
+
+    .featured-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--cyan);
+      margin-bottom: 0.85rem;
+    }
+
+    .energy-scale {
+      color: var(--gold);
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.85rem;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .card-desc {
       font-size: 0.95rem;
       color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
     }
 
-    .arrow {
-      position: absolute;
-      right: 1.75rem;
-      top: 1.75rem;
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      transition: transform 0.2s ease, color 0.2s ease;
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--cyan);
+      font-weight: 600;
     }
 
-    .article-card:hover .arrow {
-      color: var(--accent);
-      transform: translateX(4px);
+    .card-footer svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s ease;
+    }
+
+    .featured-card:hover .card-footer svg {
+      transform: translateX(5px);
+    }
+
+    /* Notification Toast for Copying Email */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--cyan);
+      color: #fff;
+      font-family: monospace;
+      font-size: 0.85rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 99px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px var(--glow-cyan);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="badge">Research & Publications</div>
-    <h1>Ankith Prasanth Nair</h1>
-    <div class="subtitle">Engineering · IIT Kharagpur · Theoretical Astrophysics & Large-Scale Cosmic Systems</div>
+  <!-- Starfield Canvas -->
+  <canvas id="starfield"></canvas>
+
+  <div class="container">
     
-    <div class="contact-links">
-      <a href="mailto:ankithprasanth@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/ankith-prasanth-nair-68598a374/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/ankithpn25-ui" target="_blank">GitHub</a>
-    </div>
-  </header>
-
-  <main>
-    <section>
-      <h2>Featured Works</h2>
+    <header>
+      <div class="badge">Astrophysics & Cosmology</div>
+      <h1>Ankith Prasanth Nair</h1>
+      <div class="subtitle">
+        Engineering Student at <span class="institution">IIT Kharagpur</span> · Interested in Theoretical Astrophysics and its applications
+      </div>
       
-      <a href="https://ankithpn25-ui.github.io/reservoir-rings-A/" class="article-card">
-        <div class="arrow">↗</div>
-        <div class="article-meta">March 2026 · ASTROPHYSICS related SPECULATION</div>
-        <div class="article-title">The Reservoir Rings: Engineering the Omnipotence of a Type II Civilization</div>
-        <div class="article-desc">An engineering and thermodynamic framework mapping the Dyson Sphere, Matrioshka Brain cascade and computational limits of stellar-scale megastructures.</div>
+      <div class="contact-grid">
+        <!-- Click to Copy Email Badges (No MS Outlook popup) -->
+        <div class="email-chip" onclick="copyToClipboard('ankithpn25@kgpian.iitkgp.ac.in', 'Institute Email')">
+          <span class="email-label">INSTITUTE</span>
+          <span>ankithpn25@kgpian.iitkgp.ac.in</span>
+        </div>
+
+        <div class="email-chip" onclick="copyToClipboard('ankithprasanth@gmail.com', 'Personal Email')">
+          <span class="email-label">PERSONAL</span>
+          <span>ankithprasanth@gmail.com</span>
+        </div>
+
+        <a href="https://www.linkedin.com/in/ankith-prasanth-nair-68598a374/" target="_blank" class="contact-btn">
+          LinkedIn ↗
+        </a>
+
+        <a href="https://github.com/ankithpn25-ui" target="_blank" class="contact-btn">
+          GitHub ↗
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <div class="section-title">// Selected Theoretical Papers</div>
+
+      <a href="https://ankithpn25-ui.github.io/reservoir-rings-A/" class="featured-card">
+        <div class="card-meta">
+          <span>JULY 2026 · ASTROPHYSICS </span>
+          <span class="energy-scale">TYPE II · 3.8 × 10²⁶ W</span>
+        </div>
+
+        <div class="card-title">
+          The Reservoir Rings: Engineering the Omnipotence of a Type II Civilization
+        </div>
+
+        <div class="card-desc">
+          An engineering and thermodynamic framework mapping Dyson Spheres, Matrioshka Brain cascades, Carnot limits, and computational limits of stellar-scale megastructures.
+        </div>
+
+        <div class="card-footer">
+          <span>Read Full Paper</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
       </a>
+    </main>
 
-    </section>
-  </main>
+  </div>
 
+  <div id="toast">Copied to clipboard!</div>
+
+  <script>
+    // Click-to-Copy Email Script
+    function copyToClipboard(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = label + ' copied to clipboard!';
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2500);
+      });
+    }
+
+    // Dynamic Starfield Engine
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+
+    let stars = [];
+    const numStars = 120;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          alpha: Math.random(),
+          speed: Math.random() * 0.005 + 0.002
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        star.alpha += star.speed;
+        if (star.alpha > 1 || star.alpha < 0) {
+          star.speed = -star.speed;
+        }
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(56, 189, 248, ${Math.abs(star.alpha) * 0.7})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(drawStars);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initStars();
+    });
+
+    resizeCanvas();
+    initStars();
+    drawStars();
+  </script>
 </body>
 </html>
